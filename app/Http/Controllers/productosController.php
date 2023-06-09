@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PDF;
 
 class productosController extends Controller
 {
+    public function getPDF()
+    {
+        $name="Juan Perez";
+        $pdf='PDF'::loadView('PDF_Example', compact('name'));
+        return $pdf->download('prueba.pdf');
+    }
     public function index()
     {
         return view('productos');

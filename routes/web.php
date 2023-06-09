@@ -40,3 +40,5 @@ Route::get('/home', function(){
 Route::get('/about', function(){
     return view('about');
 });
+
+Route::GET('/pdf',[App\Http\Controllers\productosController::class,'getPDF'])->name('productos.pdf');
