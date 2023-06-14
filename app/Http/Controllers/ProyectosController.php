@@ -6,6 +6,7 @@ use App\Models\Proyecto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use PDF;
+use Spatie\FlareClient\View;
 
 class ProyectosController extends Controller
 {
@@ -93,13 +94,16 @@ class ProyectosController extends Controller
         return redirect()->route('proyectos.index');
     }
 
-    public function report()
+    public function getPdf()
     {
-        return view('proy.reporte');
-    }
-
-    public function getPdf(Proyecto $proyecto)
-    {
+        /*$proyecto = Proyecto::paginate(5);
+        $pdf='PDF'::loadView('proy.reporte')->with('proyecto',$proyecto);
+        return $pdf->stream('prueba.pdf');*/
+        /*$proyecto = Proyecto::all();
+        return view('proy.reporte')
+                    ->with('proyecto',$proyecto);*/
+        $proyecto = Proyecto::all();
+        view()->share('proyecto', $proyecto);
         $pdf='PDF'::loadView('proy.reporte');
         return $pdf->stream('prueba.pdf');
     }

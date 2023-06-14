@@ -49,6 +49,6 @@
             {{$proyecto->links()}}
         @endif
         </div>
-        <a href="reporte.blade.php" class="btn btn-primary">Reporte</a>
+        <a href="{{route('proyecto.reporte')}}" class="btn btn-outline-primary">Reporte</a>
     </div>
 @endsection

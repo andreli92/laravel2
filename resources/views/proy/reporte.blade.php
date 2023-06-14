@@ -1,36 +1,44 @@
-<center><strong>Gobierno de El Salvador </strong></center>
-<center><strong>Instituto SalvadoreÃ±o del Seguro Social<strong></center>
-<br>
-<center><strong>Listado de Proyectos<strong></center>
-Fecha: <?php
-     $mytime = Carbon\Carbon::now();
-     echo $mytime->toDateTimeString();
-    ?>
-<br>
+@extends('tema.base')
 
-<table class="table table-stripped table-hover">
+@section('content')
+    <div class="container py-5 text-center">
+        <center><strong>GOBIERNO DE EL SALVADOR</strong></center>
+        <center><strong>INSTITUTO SALVADOREÑO DEL SEGURO SOCIAL<strong></center>
+        <br>
+        <center><strong>Listado de Proyectos<strong></center>
+        Fecha: <?php
+            $mytime = Carbon\Carbon::now();
+            echo $mytime->toDateTimeString();
+            ?>
+        <br>
 
-    <tr>
-        <th>#</th>
-        <th>Nombre del Proyecto</th>
-        <th>Fuente de Fondos</th>
-        <th>Monto Planificado</th>
-        <th>Monto Patrocinado</th>
-        <th>Monto Fondos Propios</th>
-   </tr>
-    <tbody>
-        @foreach($Proyecto as $detail)
-        <tr>
-            <td>{{$detail->id}}</td>
-            <td>{{$detail->NombreProyecto}} </td>
-            <td>{{$detail->FuenteFondos}}</td>
-            <td align="right">
-
-                {{$detail->MontoPlanificado}}
-
-            </td>
-            <td align="right">{{$detail->MontoPatrocinado}}</td>
-            <td align="right">{{$detail->MontoFondosPropios}}</td>
-        @endforeach
-    </tbody>
-</table>
+        <table class="table table-sm text-center" style='font-size: 15px'>
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre del Proyecto</th>
+                    <th scope="col">Fuente de Fondos</th>
+                    <th scope="col">Monto Planificado</th>
+                    <th scope="col">Monto Patrocinado</th>
+                    <th scope="col">Monto Fondos Propios</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($proyecto as $detail)
+                    <tr>
+                        <th scope="row">{{$detail->id}}</th>
+                        <td>{{$detail->nombreProyecto}}</td>
+                        <td>{{$detail->fuenteFondos}}</td>
+                        <td>{{$detail->montoPlanificado}}</td>
+                        <td>{{$detail->montoPatrocinado}}</td>
+                        <td>{{$detail->montoFondosPropios}}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="3">No hay registros</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+@endsection

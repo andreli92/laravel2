@@ -20,4 +20,4 @@ Route::get('/', function () {
 
 Route::resource('proyectos',ProyectosController::class);
 
-Route::get('/pdf',[App\Http\Controllers\ProyectosController::class,'getPdf']);
+Route::GET('/reporte',[App\Http\Controllers\ProyectosController::class,'getPdf'])->name('proyecto.reporte');
